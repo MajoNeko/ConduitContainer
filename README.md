@@ -117,7 +117,15 @@ docker compose ps
 
 5. Access the frontend through <localhost>:<8282>
 
-6. (Optional)  You can inspect logs by using the following commands:
+6. Run the migrations to setup the backend:
+
+```bash
+docker compose exec backend python manage.py migrate
+```
+
+7. Setup the superuser, username and password and then access the backend through <localhost>:<8281/admin>
+
+8. (Optional)  You can inspect logs by using the following commands:
 
 #### follow all services
 

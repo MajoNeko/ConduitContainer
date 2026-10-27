@@ -136,6 +136,7 @@ docker compose logs --tail=100 -t backend
 ```bash
 mkdir -p logs
 docker compose logs --no-color --timestamps [container] > logs/compose[container].log
+(or you can use: docker logs [container-name] > logs/file.txt )
 ```
 
 ### Modifying Behavior

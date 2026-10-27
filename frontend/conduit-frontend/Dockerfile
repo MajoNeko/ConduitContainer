@@ -10,7 +10,10 @@ COPY . .
 
 # Point the API at the backend before building
 ARG API_URL=/api
-RUN sed -i "s|https://conduit.productionready.io/api|${API_URL}|g" \
+#RUN sed -i "s|https://conduit.productionready.io/api|${API_URL}|g" \
+#      src/app/core/interceptors/api.interceptor.ts
+
+RUN sed -i "s|https://api.realworld.io/api|${API_URL}|g" \
       src/app/core/interceptors/api.interceptor.ts
 
 

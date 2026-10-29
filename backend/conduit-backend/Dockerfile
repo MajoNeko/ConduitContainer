@@ -24,8 +24,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 COPY --from=build /usr/local/lib/python3.6/site-packages /usr/local/lib/python3.6/site-packages
 COPY --from=build /usr/local/bin /usr/local/bin
 COPY entrypoint.sh /app/entrypoint.sh
-RUN chmod +x /app/entrypoint.sh
 COPY . .
+RUN chmod +x /app/entrypoint.sh
 
 EXPOSE 8000
 

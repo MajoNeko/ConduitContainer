@@ -17,6 +17,7 @@ Sample project to containerize a fullstack web application, consisting of a back
     - [Enable debug mode](#enable-debug-mode)
     - [Change access ports](#change-access-ports)
     - [Reset everything](#reset-everything)
+    - [Migration](#migration)
 
 ## Prerequisites
 
@@ -117,15 +118,9 @@ docker compose ps
 
 5. Access the frontend through <localhost>:<FRONTEND_PORT> (default is 8282)
 
-6. Run the migrations to setup the backend:
+6. Setup the superuser, username and password and then access the backend through <localhost>:<BACKEND_PORT/admin> (BACKEND_PORT default is 8281)
 
-```bash
-docker compose exec backend python manage.py migrate
-```
-
-7. Setup the superuser, username and password and then access the backend through <localhost>:<BACKEND_PORT/admin> (BACKEND_PORT default is 8281)
-
-8. (Optional)  You can inspect logs by using the following commands:
+7. (Optional)  You can inspect logs by using the following commands:
 
 #### follow all services
 
@@ -159,4 +154,8 @@ docker compose logs --timestamps [container] > logs/compose[container].log
 
 - #### Reset everything
 
-    Docker compose down -v removes the containers and db volume, giving you a clean install. This deletes all site data — use it only when you intend to start over.
+  Docker compose down -v removes the containers and db volume, giving you a clean install. This deletes all site data — use it only when you intend to start over.
+
+- #### Migration
+
+  Running the migration after the container is setup works well on a single backend. In the case of scaling out, migrations hould be moved to a one-shot job to avoid two containers racing on migrate due to multiple workers.

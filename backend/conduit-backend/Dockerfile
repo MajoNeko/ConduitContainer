@@ -23,9 +23,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 COPY --from=build /usr/local/lib/python3.6/site-packages /usr/local/lib/python3.6/site-packages
 COPY --from=build /usr/local/bin /usr/local/bin
-
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 COPY . .
 
 EXPOSE 8000
 
+ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["gunicorn", "conduit.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "2"]
